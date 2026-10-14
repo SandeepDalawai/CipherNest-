@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1e2b">
+  <meta name="description" content="A private, browser-based password strength checker and secure password generator.">
+  <title>Password Strength Checker | CipherNest</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="CipherNest home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7.5 10V7.6a4.5 4.5 0 0 1 9 0V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="5" y="10" width="14" height="11" rx="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M12 14v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span>CipherNest<span class="brand-dot">.</span></span>
+      </a>
+      <div class="privacy-chip"><span class="privacy-dot"></span> Private by design</div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="eyebrow-line"></span> SECURITY TOOLKIT <span class="eyebrow-line"></span></p>
+        <h1 id="page-title">Make every password<br><span>harder to guess.</span></h1>
+        <p class="hero-copy">Check a password locally, understand what makes it stronger, and create a unique one when you need it.</p>
+        <div class="hero-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 3.5 5v4.3c0 4 2.8 6.8 6.5 8.2 3.7-1.4 6.5-4.2 6.5-8.2V5L10 2.5Z"/><path d="m7.2 9.8 1.8 1.8 3.9-4"/></svg> Your password stays on this device</div>
+      </section>
+
+      <section class="workspace-grid" aria-label="Password tools">
+        <div class="main-column">
+          <section class="card checker-card" aria-labelledby="checker-title">
+            <div class="card-heading">
+              <div><span class="step-label">01 / CHECK</span><h2 id="checker-title">Password checkup</h2></div>
+              <span class="local-badge"><span></span> LOCAL ONLY</span>
+            </div>
+            <label class="field-label" for="password-input">Enter a password to analyze</label>
+            <div class="password-field">
+              <input id="password-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type or paste a password" aria-describedby="privacy-note">
+              <div class="field-actions">
+                <button class="icon-button" id="toggle-visibility" type="button" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button>
+                <button class="icon-button" id="copy-password" type="button" aria-label="Copy password" title="Copy password"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V5.8A1.8 1.8 0 0 0 14.2 4H6.8A1.8 1.8 0 0 0 5 5.8v8.4A1.8 1.8 0 0 0 6.8 16H8"/></svg></button>
+              </div>
+            </div>
+            <div class="field-footer"><span id="privacy-note">Analysis runs in your browser only.</span><button class="text-button" id="clear-password" type="button">Clear</button></div>
+
+            <div class="strength-panel" aria-live="polite" aria-atomic="true">
+              <div class="strength-topline"><div><span class="mini-label">STRENGTH ESTIMATE</span><p class="strength-name" id="strength-label">Waiting for a password</p></div><div class="score"><strong id="score-value">—</strong><span>/ 100</span></div></div>
+              <div class="meter-track" role="progressbar" aria-label="Password strength score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="strength-meter"><div class="meter-fill" id="strength-fill"></div></div>
+              <div class="meter-caption"><span id="meter-message">Enter a password to see its estimate.</span><span id="length-count">0 characters</span></div>
+            </div>
+
+            <div class="analysis-grid">
+              <section class="analysis-section" aria-labelledby="requirements-heading">
+                <div class="section-title-row"><h3 id="requirements-heading">Password checklist</h3><span class="subtle-count" id="requirement-count">0 / 6</span></div>
+                <ul class="checklist" id="requirements-list">
+                  <li data-check="length"><span class="check-icon" aria-hidden="true">·</span><span>At least 12 characters</span></li>
+                  <li data-check="upper"><span class="check-icon" aria-hidden="true">·</span><span>Uppercase letter</span></li>
+                  <li data-check="lower"><span class="check-icon" aria-hidden="true">·</span><span>Lowercase letter</span></li>
+                  <li data-check="number"><span class="check-icon" aria-hidden="true">·</span><span>Number</span></li>
+                  <li data-check="symbol"><span class="check-icon" aria-hidden="true">·</span><span>Special character</span></li>
+                  <li data-check="patterns"><span class="check-icon" aria-hidden="true">·</span><span>No obvious sequences or repeats</span></li>
+                </ul>
+              </section>
+              <section class="analysis-section suggestions-section" aria-labelledby="suggestions-heading">
+                <div class="section-title-row"><h3 id="suggestions-heading">Ways to improve</h3><span class="sparkle" aria-hidden="true">✳</span></div>
+                <ul class="suggestions-list" id="suggestions-list"><li>Start typing to get tailored suggestions.</li></ul>
+              </section>
+            </div>
+            <p class="estimate-note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 7.2v3.5M8 5.1h.01"/></svg> This heuristic is an estimate, not a guarantee. CipherNest does not check whether a password appears in known data breaches.</p>
+          </section>
+
+          <section class="card generator-card" aria-labelledby="generator-title">
+            <div class="card-heading">
+              <div><span class="step-label">02 / GENERATE</span><h2 id="generator-title">Create a strong password</h2></div>
+              <span class="generator-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></svg></span>
+            </div>
+            <div class="generator-controls">
+              <label class="length-control" for="length-slider"><span>Password length <strong id="length-value">20</strong></span><input id="length-slider" type="range" min="8" max="64" value="20"></label>
+              <fieldset class="character-options"><legend>Include character types</legend>
+                <label><input type="checkbox" id="include-upper" checked><span class="custom-check"></span>Uppercase</label>
+                <label><input type="checkbox" id="include-lower" checked><span class="custom-check"></span>Lowercase</label>
+                <label><input type="checkbox" id="include-numbers" checked><span class="custom-check"></span>Numbers</label>
+                <label><input type="checkbox" id="include-symbols" checked><span class="custom-check"></span>Symbols</label>
+              </fieldset>
+            </div>
+            <div class="generator-error" id="generator-error" role="status" aria-live="polite"></div>
+            <div class="generator-actions"><button class="button button-primary" id="generate-password" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.8 6.4A6 6 0 0 0 5.3 5L3.8 6.5M3.7 3.8v2.8h2.8M4.2 13.6A6 6 0 0 0 14.7 15l1.5-1.5m.1 2.7v-2.8h-2.8"/></svg> Generate password</button><button class="button button-secondary" id="use-generated" type="button" disabled>Use in checker <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4"/></svg></button></div>
+            <p class="generator-note"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7V5.5a3 3 0 0 1 6 0V7"/><rect x="3.5" y="7" width="9" height="7" rx="1.5"/></svg> Generated with your browser’s cryptographic random number generator.</p>
+          </section>
+        </div>
+
+        <aside class="side-column">
+          <section class="card learning-card" aria-labelledby="learn-title">
+            <span class="step-label">THE BASICS</span><h2 id="learn-title">A little password wisdom</h2>
+            <div class="learning-item"><span class="learning-icon icon-length" aria-hidden="true">↗</span><div><h3>Long beats complicated</h3><p>More characters make a password harder to guess. A memorable passphrase can be a good choice.</p></div></div>
+            <div class="learning-item"><span class="learning-icon icon-unique" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 2 3 5v4.5c0 4.1 2.9 7 7 8.5 4.1-1.5 7-4.4 7-8.5V5l-7-3Z"/><path d="M7 10h6"/></svg></span><div><h3>Keep each one unique</h3><p>Reusing a password lets a leak on one service put other accounts at risk.</p></div></div>
+            <div class="learning-item"><span class="learning-icon icon-manager" aria-hidden="true">▤</span><div><h3>Let a manager help</h3><p>A password manager can create and remember long, unique passwords for you.</p></div></div>
+            <div class="learning-item"><span class="learning-icon icon-mfa" aria-hidden="true">＋</span><div><h3>Add another factor</h3><p>Multifactor authentication adds a second check if your password is exposed.</p></div></div>
+          </section>
+          <section class="privacy-card">
+            <div class="privacy-card-icon"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 7.7 7 9 4-1.3 7-4.5 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div><h3>Private by design</h3><p>No account. No server. No password storage. Your password is analyzed only in this browser tab.</p></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+    <footer class="site-footer"><span>CYBERSECURITY MINI PROJECT</span><span>Built for safer habits <span aria-hidden="true">·</span> Runs entirely on your device</span></footer>
+  </div>
+</body>
+</html>
